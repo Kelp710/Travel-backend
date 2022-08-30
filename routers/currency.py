@@ -98,6 +98,3 @@ class CurrencyFinder:
           pass
       print(countries_info)
       return countries_info
-      
-c = CurrencyFinder("CAD", "2022-03-03", "2022-07-06")
-c.find_countries()
