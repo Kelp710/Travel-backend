@@ -41,7 +41,6 @@ class CurrencyFinder:
       headers= {
         "apikey": "YW9YYuJleCkcnDXY4hLUGspYSZI3HZ9J"
       }
-      unsplash_key = "BIWkxve6hsoQNq7zoauikNAOXOH03SEKh1futEFtnRA"
 
       response = requests.request("GET", url, headers=headers, data = payload)
 
@@ -50,7 +49,7 @@ class CurrencyFinder:
       for n in result["rates"]:
         change_pct = result["rates"][n]["change_pct"]
         current_price = result["rates"][n]["end_rate"]
-        if change_pct >= 19 and n != "BTC":
+        if change_pct >= 15 and n != "BTC":
           # Get basic country`s info
           url = f"https://restcountries.com/v2/currency/{n}" 
           r = requests.get(url)
@@ -78,8 +77,10 @@ class CurrencyFinder:
                 country_info["change_rate"] =round(result["rates"][n]["change_pct"],1)
 
                 # Get picture url of the country
+                unsplash_key = "BIWkxve6hsoQNq7zoauikNAOXOH03SEKh1futEFtnRA"
                 url = f"https://api.unsplash.com/photos/random/?client_id={unsplash_key}&query={country}&per_page=4&order_by=popular&orientation=landscape&count=1&content_filter=high"
                 r_2 = requests.get(url) 
+                print(r_2)
                 pic_data = r_2.json()[0]["urls"]["raw"]
                 country_info["picture"]=pic_data
 
@@ -98,3 +99,5 @@ class CurrencyFinder:
       print(countries_info)
       return countries_info
       
+c = CurrencyFinder("CAD", "2022-03-03", "2022-07-06")
+c.find_countries()

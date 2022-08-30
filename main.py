@@ -2,7 +2,7 @@ import datetime
 from dateutil.relativedelta import relativedelta
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI
-from app.routers import currency
+from routers import currency
 
 # Updating data to the web page, jsx file can access then
 
