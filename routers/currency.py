@@ -16,7 +16,7 @@ router = APIRouter(
 app = FastAPI()
 
 origins = [
-    "http://10.10.1.10:3000",
+    "*",
 ]
 
 app.add_middleware(
