@@ -57,8 +57,6 @@ class CurrencyFinder:
             pass
           else:
             currency_places = r.json()
-
-            # if len(currency_places) > 1:
             for place in range(len(currency_places)):
                 country_info = {}
                 country_data = currency_places
