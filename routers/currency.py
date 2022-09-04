@@ -49,7 +49,7 @@ class CurrencyFinder:
       for n in result["rates"]:
         change_pct = result["rates"][n]["change_pct"]
         current_price = result["rates"][n]["end_rate"]
-        if change_pct >= 15 and n != "BTC":
+        if change_pct >= 10 and n != "BTC":
           # Get basic country`s info
           url = f"https://restcountries.com/v2/currency/{n}" 
           r = requests.get(url)

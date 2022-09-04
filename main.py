@@ -21,6 +21,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 today = datetime.datetime.now()
 today_data = f"{today.year}-{today.strftime('%m')}-{today.strftime('%d')}"
 past = today + relativedelta(months=-3)
