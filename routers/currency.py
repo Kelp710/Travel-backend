@@ -5,6 +5,8 @@ import os
 from datetime import date
 from fastapi import APIRouter, HTTPException
 import datetime
+from dotenv import load_dotenv
+load_dotenv()
 
 router = APIRouter(
     prefix="/countries",
@@ -39,7 +41,7 @@ class CurrencyFinder:
       countries_info = []
       payload = {}
       headers= {
-        "apikey": "YW9YYuJleCkcnDXY4hLUGspYSZI3HZ9J"
+        "apikey": os.environ['Country_Api']
       }
 
       response = requests.request("GET", url, headers=headers, data = payload)
@@ -75,7 +77,7 @@ class CurrencyFinder:
                 country_info["change_rate"] =round(result["rates"][n]["change_pct"],1)
 
                 # Get picture url of the country
-                unsplash_key = "BIWkxve6hsoQNq7zoauikNAOXOH03SEKh1futEFtnRA"
+                unsplash_key = os.environ['Unsplash_Key']
                 url = f"https://api.unsplash.com/photos/random/?client_id={unsplash_key}&query={country}&per_page=4&order_by=popular&orientation=landscape&count=1&content_filter=high"
                 r_2 = requests.get(url) 
                 print(r_2)
@@ -94,5 +96,4 @@ class CurrencyFinder:
                 countries_info.append(country_info)
         else:
           pass
-      print(countries_info)
       return countries_info
