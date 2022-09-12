@@ -80,7 +80,6 @@ class CurrencyFinder:
                 unsplash_key = os.environ['Unsplash_Key']
                 url = f"https://api.unsplash.com/photos/random/?client_id={unsplash_key}&query={country}&per_page=4&order_by=popular&orientation=landscape&count=1&content_filter=high"
                 r_2 = requests.get(url) 
-                print(r_2)
                 pic_data = r_2.json()[0]["urls"]["raw"]
                 country_info["picture"]=pic_data
 
@@ -88,7 +87,11 @@ class CurrencyFinder:
                 country_code = country_data[place]['alpha2Code']
                 url_safe = f"https://www.travel-advisory.info/api?countrycode={country_code}"
                 r_3 = requests.get(url_safe)
-                safe_data = r_3.json()['data'][country_code]['advisory']
+                try:
+                  safe_data = r_3.json()['data'][country_code]['advisory']
+                  print(safe_data)
+                except TypeError:
+                  safe_data = 5
 
                 country_info["safe_level"]=safe_data
 
@@ -97,3 +100,6 @@ class CurrencyFinder:
         else:
           pass
       return countries_info
+
+c = CurrencyFinder("CAD","2002-03-03","2004-03-03")
+print(c.find_countries())
