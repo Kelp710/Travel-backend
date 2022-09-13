@@ -101,5 +101,3 @@ class CurrencyFinder:
           pass
       return countries_info
 
-c = CurrencyFinder("CAD","2002-03-03","2004-03-03")
-print(c.find_countries())
